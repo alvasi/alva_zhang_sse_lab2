@@ -9,4 +9,5 @@ def hello_world():
 def submit():
     input_name = request.form.get("name")
     input_age = request.form.get("age")
+    input_fav_colour = request.form.get("colour")
     return render_template("hello.html", name=input_name, age=input_age)   
