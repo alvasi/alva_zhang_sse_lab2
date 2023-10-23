@@ -13,6 +13,6 @@ def submit():
     input_name = request.form.get("name")
     input_age = request.form.get("age")
     input_reason = request.form.get("reason")
-    return render_template("hello.html", 
+    return render_template("hello.html",
                            name=input_name, age=input_age,
                            reason=input_reason)
