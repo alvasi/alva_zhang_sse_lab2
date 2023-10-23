@@ -16,4 +16,3 @@ def submit():
     return render_template("hello.html", 
                            name=input_name, age=input_age,
                            reason=input_reason)
-                           
