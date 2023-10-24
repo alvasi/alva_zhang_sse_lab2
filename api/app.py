@@ -51,10 +51,10 @@ def handle_guess(guess):
             + str(num_g) + "."
         elif guess == secret_number:
             game_message = new_game()
-            return game_message
+            return "Correct!", game_message
         elif num_g <= 1:
             game_message = new_game()
-            return game_message
+            return "No remaining guesses", game_message
     else:
         return "Invalid query. Please enter a number."
 
