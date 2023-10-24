@@ -52,5 +52,5 @@ def test_handle_guess_no_remaining_guesses():
     guess = "99"
 
     # Execute
-    with pytest.raises(AssertionError);
+    with pytest.raises(AssertionError):
         assert handle_guess(guess) == "Unlucky! No remaining guesses."
