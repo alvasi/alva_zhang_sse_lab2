@@ -38,15 +38,15 @@ def query():
 
 def handle_guess(guess):
     global num_g
-    for guess.isdigit():
+    if guess.isdigit():
         guess = int(guess)
         if guess < secret_number and num_g > 1:
             num_g -= 1
-            return "Too low! Number of remaining guesses is "
+            return "Too low. Number of remaining guesses is "
             + str(num_g) + "."
         elif guess > secret_number and num_g > 1:
             num_g -= 1
-            return "Too high! Number of remaining guesses is "
+            return "Too high. Number of remaining guesses is "
             + str(num_g) + "."
         elif guess == secret_number:
             new_game()
