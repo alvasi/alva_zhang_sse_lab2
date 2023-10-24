@@ -15,11 +15,11 @@ from app import handle_guess
 
 
 def test_handle_guess_lower():
-    assert handle_guess(50) == "Higher. Number of remaining guesses is 6."
+    assert handle_guess(50) == "Too low!. Number of remaining guesses is 6."
 
 
 def test_handle_guess_higher():
-    assert handle_guess(70) == "Lower. Number of remaining guesses is 5."
+    assert handle_guess(70) == "Too high!. Number of remaining guesses is 5."
 
 
 def test_handle_guess_correct():
