@@ -31,15 +31,6 @@ def query():
     return render_template("result.html", result=result)
 
 
-# def process_query(q):
-#     if q == "dinosaurs":
-#         return "Dinosaurs ruled the Earth 200 million years ago"
-#     elif q == "asteroids":
-#         return "Unknown"
-#     else:
-#         return "Unknown"
-
-
 def handle_guess(guess):
     global num_g
     if guess.isdigit():
@@ -55,6 +46,7 @@ def handle_guess(guess):
             new_game()
         elif num_g <= 1:
             return "Unlucky! No remaining guesses."
+            new_game()
     else:
         return "Invalid query. Please enter a number."
 
