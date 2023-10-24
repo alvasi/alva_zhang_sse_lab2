@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guessing Game</title>
+</head>
+<body>
+    <h1>Guessing Game Result</h1>
+    <p>{{ result }}</p>
+    {% if result != "No remaining guesses." %}
+        <form action="/query" method="get">
+            <input type="text" name="q" placeholder="Enter your guess">
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+</body>
+</html>
