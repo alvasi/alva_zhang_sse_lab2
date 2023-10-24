@@ -25,9 +25,10 @@ def submit():
 
 
 @app.route("/query", methods=["GET"])
-def query():
-    query_param = request.args.get("q")
-    result = handle_guess(query_param)
+def query(q=None):
+    if q is None:
+        q = request.args.get("q")
+    result = handle_guess(q)
     if "No remaining guesses" in result or "Correct!" in result:
         game_message = new_game()
     else:
