@@ -42,11 +42,11 @@ def handle_guess(guess):
             num_g -= 1
             return "Lower. Number of remaining guesses is " + str(num_g) + "."
         elif guess == secret_number:
+            new_game()
             return "Correct!"
-            new_game()
         elif num_g <= 1:
-            return "Unlucky! No remaining guesses."
             new_game()
+            return "Unlucky! No remaining guesses."
     else:
         return "Invalid query. Please enter a number."
 
