@@ -37,7 +37,8 @@ def test_handle_guess_invalid():
 
 
 def test_query_no_remaining_guesses():
-    global num_g secret_number
+    global num_g
+    global secret_number
     num_g = 1
     secret_number = 60
     result = query(100)
