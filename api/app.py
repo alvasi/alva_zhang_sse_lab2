@@ -58,7 +58,6 @@ def handle_guess(guess):
         return "Invalid query. Please enter a number."
 
 
-
 def new_game():
     global secret_number, num_g, range
     num_g = 7
