@@ -36,7 +36,7 @@ def test_handle_guess_correct():
     new_game()
     secret_number = 42
     num_g = 3
-    guess = 42
+    guess = "42"
 
     # Execute
     result = handle_guess(guess)
@@ -50,7 +50,7 @@ def test_handle_guess_no_remaining_guesses():
     new_game()
     secret_number = 42
     num_g = 1
-    guess = 99
+    guess = "99"
 
     # Execute
     result = handle_guess(guess)
