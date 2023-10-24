@@ -41,13 +41,13 @@ def handle_guess(guess):
     if isinstance(guess, int):
         guess = int(guess)
         if guess < secret_number and num_g > 1:
-            num_g -= 1
             return "Too low!. Number of remaining guesses is "
             + str(num_g) + "."
-        elif guess > secret_number and num_g > 1:
             num_g -= 1
+        elif guess > secret_number and num_g > 1:
             return "Too high!. Number of remaining guesses is "
             + str(num_g) + "."
+            num_g -= 1
         elif guess == secret_number:
             game_message = new_game()
             return game_message
