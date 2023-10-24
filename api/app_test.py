@@ -12,12 +12,7 @@
 #     assert process_query("asteroids") == "Unknown"
 
 from app import handle_guess
-
-@pytest.fixture(autouse=True)
-def setup():
-    global secret_number, num_g
-    secret_number = 60
-    num_g = 7
+from app import query
 
 
 def test_handle_guess_lower():
@@ -30,15 +25,20 @@ def test_handle_guess_higher():
     assert result.startswith("Too high!. Number of remaining guesses is")
 
 
-def test_handle_guess_correct():
-    assert handle_guess(60) == "Correct!"
+def test_query_correct():
+    global secret_number
+    secret_number = 60
+    result = query(60)
+    assert result.startswith("Correct!")
 
 
 def test_handle_guess_invalid():
     assert handle_guess("abc") == "Invalid query. Please enter a number."
 
 
-def test_handle_guess_no_remaining_guesses():
-    global num_g
+def test_query_no_remaining_guesses():
+    global num_g secret_number
     num_g = 1
-    assert handle_guess(100) == "Unlucky! No remaining guesses."
+    secret_number = 60
+    result = query(100)
+    assert result.startswith("Unlucky! No remaining guesses.")
