@@ -35,7 +35,7 @@ def test_query_correct():
     with patch('app.new_game') as mock_new_game:
         mock_new_game.return_value = "Correct!"
         mock_new_game.side_effect = lambda:
-        (global secret_number; secret_number = 60)
+        (global secret_number, num_g; secret_number = 60; num_g = 4)
         with app.app_context():
             result = query("60")
         assert result.startswith("Correct!")
