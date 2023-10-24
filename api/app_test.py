@@ -30,16 +30,14 @@ def test_handle_guess_invalid():
 
 
 def test_handle_guess_correct():
-    global secret_number, num_g
+    global secret_number
     secret_number = 50
-    num_g = 3
     result = handle_guess("50")
     assert "Correct!" in result
 
 
 def test_handle_guess_no_remaining_guesses():
-    global secret_number, num_g
-    secret_number = 50
-    num_g = 1
+    global num_g
+    num_g = 0
     result = handle_guess("100")
     assert "Unlucky! No remaining guesses." in result
