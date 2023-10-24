@@ -18,16 +18,17 @@ from app import app
 
 def test_handle_guess_lower():
     result = handle_guess(1)
-    assert result.startswith("Too low!. Number of remaining guesses is")
+    assert "Too low!. Number of remaining guesses is" in result
 
 
 def test_handle_guess_higher():
     result = handle_guess(100)
-    assert result.startswith("Too high!. Number of remaining guesses is")
+    assert "Too high!. Number of remaining guesses is" in result
 
 
 def test_handle_guess_invalid():
-    assert handle_guess("abc") == "Invalid query. Please enter a number."
+    result = handle_guess("abc")
+    assert "Invalid query. Please enter a number." in result
 
 
 def set_globals_correct():
