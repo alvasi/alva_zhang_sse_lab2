@@ -29,7 +29,7 @@ def test_handle_guess_invalid():
     assert "Invalid query. Please enter a number." in result
 
 
-def test_query_correct():
+def test_handle_guess_correct():
     global secret_number, num_g
     secret_number = 50
     num_g = 3
@@ -37,7 +37,7 @@ def test_query_correct():
     assert "Correct!" in result
 
 
-def test_query_no_remaining_guesses():
+def test_handle_guess_no_remaining_guesses():
     global secret_number, num_g
     secret_number = 50
     num_g = 1
