@@ -13,6 +13,12 @@
 
 from app import handle_guess
 
+@pytest.fixture(autouse=True)
+def setup():
+    global secret_number, num_g
+    secret_number = 60
+    num_g = 7
+
 
 def test_handle_guess_lower():
     result = handle_guess(1)
@@ -25,8 +31,6 @@ def test_handle_guess_higher():
 
 
 def test_handle_guess_correct():
-    global secret_number
-    secret_number = 60
     assert handle_guess(60) == "Correct!"
 
 
@@ -35,7 +39,6 @@ def test_handle_guess_invalid():
 
 
 def test_handle_guess_no_remaining_guesses():
-    global secret_number, num_g
-    secret_number = 100
+    global num_g
     num_g = 1
     assert handle_guess(100) == "Unlucky! No remaining guesses."
