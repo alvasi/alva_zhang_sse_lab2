@@ -19,12 +19,12 @@ import pytest
 
 def test_handle_guess_lower():
     result = handle_guess("1")
-    assert "Too low. Number of remaining guesses is" in result
+    assert "Too low. Number of remaining guesses is" + str(num_g) + "." in result
 
 
 def test_handle_guess_higher():
     result = handle_guess("100")
-    assert "Too high. Number of remaining guesses is" in result
+    assert "Too high. Number of remaining guesses is" + str(num_g) + "." in result
 
 
 def test_handle_guess_invalid():
