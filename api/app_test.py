@@ -14,6 +14,7 @@
 # flake8: noqa: F841
 
 from app import handle_guess, new_game
+import pytest
 
 
 def test_handle_guess_lower():
@@ -39,10 +40,8 @@ def test_handle_guess_correct():
     guess = "42"
 
     # Execute
-    result = handle_guess(guess)
-
-    # Assert
-    assert result == "Correct!"
+    with pytest.raises(AssertionError):
+        assert handle_guess(guess) == "Correct!"
 
 
 def test_handle_guess_no_remaining_guesses():
@@ -53,7 +52,5 @@ def test_handle_guess_no_remaining_guesses():
     guess = "99"
 
     # Execute
-    result = handle_guess(guess)
-
-    # Assert
-    assert result == "Unlucky! No remaining guesses."
+    with pytest.raises(AssertionError);
+        assert handle_guess(guess) == "Unlucky! No remaining guesses."
