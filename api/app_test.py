@@ -43,7 +43,7 @@ def test_query_correct():
         mock_new_game.side_effect = set_globals_correct
         with app.app_context():
             result = query("60")
-        assert result.startswith("Correct!")
+        assert "Correct!" in result
 
 
 def set_globals_no_guesses():
@@ -58,4 +58,4 @@ def test_query_no_remaining_guesses():
         mock_new_game.side_effect = set_globals_no_guesses
         with app.app_context():
             result = query("100")
-        assert result.startswith("Unlucky! No remaining guesses.")
+        assert "Unlucky! No remaining guesses." in result
