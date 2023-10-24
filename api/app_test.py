@@ -15,12 +15,12 @@ from app import handle_guess
 
 
 def test_handle_guess_lower():
-    result = handle_guess(1)
+    result = handle_guess("1")
     assert "Too low. Number of remaining guesses is" in result
 
 
 def test_handle_guess_higher():
-    result = handle_guess(100)
+    result = handle_guess("100")
     assert "Too high. Number of remaining guesses is" in result
 
 
@@ -33,7 +33,7 @@ def test_handle_guess_correct():
     global secret_number, num_g
     secret_number = 50
     num_g = 3
-    result = handle_guess(50)
+    result = handle_guess("50")
     assert "Correct!" in result
 
 
@@ -41,5 +41,5 @@ def test_handle_guess_no_remaining_guesses():
     global secret_number, num_g
     secret_number = 50
     num_g = 1
-    result = handle_guess(100)
+    result = handle_guess("100")
     assert "Unlucky! No remaining guesses." in result
