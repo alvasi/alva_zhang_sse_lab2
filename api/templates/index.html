@@ -16,10 +16,23 @@
         <input type="text" id="reasonfield" name="reason">
         <input type="submit" value="Submit">
     </form>
-    <p>Please enter a query:</p>
+    <ul>
+        <li>A secret number between 0 and 100 has been chosen.</li>
+        <li>You have 7 guesses to find the secret number.</li>
+        <li>After each guess, you will be told whether your guess is higher or lower than the secret number.</li>
+        <li>If you guess the secret number correctly, you win!</li>
+        <li>If you run out of guesses, the game is over.</li>
+    </ul>
+    <p>Please enter your first guess below:</p>
+    <form action="/query" method="get">
+        <label for="queryfield">Guess:</label>
+        <input type="text" id="queryfield" name="q">
+        <input type="submit" value="Submit Guess">
+    </form>
+    <!-- <p>Please enter a query:</p>
     <form action="/query" method="get">
         <label for="queryfield">Query:</label>
         <input type="text" id="queryfield" name="q">
         <input type="submit" value="Submit Query">
-    </form>
+    </form> -->
 </html>
