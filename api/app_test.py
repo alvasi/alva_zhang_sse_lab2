@@ -11,7 +11,8 @@
 # def test_does_not_know_about_asteroids():
 #     assert process_query("asteroids") == "Unknown"
 
-from app import handle_guess
+from app import handle_guess, new_game
+import pytest
 
 
 def test_handle_guess_lower():
@@ -30,13 +31,28 @@ def test_handle_guess_invalid():
 
 
 def test_handle_guess_correct():
-    global secret_number
-    result = handle_guess(secret_number)
-    assert "Correct!" in result
+    # Set up
+    new_game()
+    secret_number = 42
+    num_g = 3
+    guess = 42
+
+    # Execute
+    result = handle_guess(guess)
+
+    # Assert
+    assert result == "Correct!"
 
 
 def test_handle_guess_no_remaining_guesses():
-    global num_g
-    num_g = 0
-    result = handle_guess("100")
-    assert "Unlucky! No remaining guesses." in result
+    # Set up
+    new_game()
+    secret_number = 42
+    num_g = 1
+    guess = 99
+
+    # Execute
+    result = handle_guess(guess)
+
+    # Assert
+    assert result == "Unlucky! No remaining guesses."
