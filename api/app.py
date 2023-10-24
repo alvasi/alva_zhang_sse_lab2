@@ -25,10 +25,9 @@ def submit():
 
 
 @app.route("/query", methods=["GET"])
-def query(q=None):
-    if q is None:
-        q = request.args.get("q")
-    result = handle_guess(q)
+def query():
+    query_param = request.args.get("q")
+    result = handle_guess(query_param)
     if "No remaining guesses" in result or "Correct!" in result:
         game_message = new_game()
     else:
@@ -39,22 +38,20 @@ def query(q=None):
 
 def handle_guess(guess):
     global num_g
-    if guess.isDigit():
+    if guess.isdigit():
         guess = int(guess)
-        if guess > secret_number and num_g > 1:
+        if guess < secret_number and num_g > 1:
             num_g -= 1
-            return "Too high!. Number of remaining guesses is "
-            + str(num_g) + "."
-        elif guess < secret_number and num_g > 1:
+            return "Higher. Number of remaining guesses is " + str(num_g) + "."
+        elif guess > secret_number and num_g > 1:
             num_g -= 1
-            return "Too low!. Number of remaining guesses is "
-            + str(num_g) + "."
+            return "Lower. Number of remaining guesses is " + str(num_g) + "."
         elif guess == secret_number:
-            game_message = new_game()
-            return "Correct!", game_message
+            new_game()
+            return "Correct!"
         elif num_g <= 1:
-            game_message = new_game()
-            return "No remaining guesses", game_message
+            new_game()
+            return "Unlucky! No remaining guesses."
     else:
         return "Invalid query. Please enter a number."
 
