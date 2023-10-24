@@ -30,6 +30,7 @@ def test_handle_guess_invalid():
 
 
 def test_handle_guess_correct():
+    global secret_number
     result = handle_guess(secret_number)
     assert "Correct!" in result
 
