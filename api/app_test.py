@@ -34,8 +34,8 @@ def test_handle_guess_invalid():
 def test_query_correct():
     with patch('app.new_game') as mock_new_game:
         mock_new_game.return_value = "Correct!"
-        mock_new_game.side_effect = lambda:
-        (global secret_number, num_g; secret_number = 60; num_g = 4)
+        mock_new_game.side_effect =
+        lambda:(global secret_number, num_g; secret_number = 60; num_g = 4)
         with app.app_context():
             result = query("60")
         assert result.startswith("Correct!")
@@ -44,8 +44,8 @@ def test_query_correct():
 def test_query_no_remaining_guesses():
     with patch('app.new_game') as mock_new_game:
         mock_new_game.return_value = "Unlucky! No remaining guesses."
-        mock_new_game.side_effect = lambda:
-        (global secret_number, num_g; secret_number = 60; num_g = 1)
+        mock_new_game.side_effect =
+        lambda:(global secret_number, num_g; secret_number = 60; num_g = 1)
         with app.app_context():
             result = query("100")
         assert result.startswith("Unlucky! No remaining guesses.")
