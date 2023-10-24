@@ -12,8 +12,6 @@
 #     assert process_query("asteroids") == "Unknown"
 
 from app import handle_guess
-from unittest.mock import patch
-from app import app
 
 
 def test_handle_guess_lower():
@@ -31,31 +29,17 @@ def test_handle_guess_invalid():
     assert "Invalid query. Please enter a number." in result
 
 
-def set_globals_correct():
-    global secret_number, num_g
-    secret_number = 60
-    num_g = 4
-
-
 def test_query_correct():
-    with patch('app.new_game') as mock_new_game:
-        mock_new_game.return_value = "Correct!"
-        mock_new_game.side_effect = set_globals_correct
-        with app.app_context():
-            result = handle_guess(60)
-        assert "Correct!" in result
-
-
-def set_globals_no_guesses():
     global secret_number, num_g
-    secret_number = 60
-    num_g = 1
+    secret_number = 50
+    num_g = 3
+    result = handle_guess(50)
+    assert "Correct!" in result
 
 
 def test_query_no_remaining_guesses():
-    with patch('app.new_game') as mock_new_game:
-        mock_new_game.return_value = "Unlucky! No remaining guesses."
-        mock_new_game.side_effect = set_globals_no_guesses
-        with app.app_context():
-            result = handle_guess(100)
+    global secret_number, num_g
+    secret_number = 50
+    num_g = 1
+    result = handle_guess(100)
         assert "Unlucky! No remaining guesses." in result
