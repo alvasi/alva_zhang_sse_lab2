@@ -40,14 +40,14 @@ def handle_guess(guess):
     global num_g
     if isinstance(guess, int):
         guess = int(guess)
-        if guess < secret_number and num_g > 1:
-            return "Too low!. Number of remaining guesses is "
-            + str(num_g) + "."
+        if guess > secret_number and num_g > 1:
             num_g -= 1
-        elif guess > secret_number and num_g > 1:
             return "Too high!. Number of remaining guesses is "
             + str(num_g) + "."
+        elif guess < secret_number and num_g > 1:
             num_g -= 1
+            return "Too low!. Number of remaining guesses is "
+            + str(num_g) + "."
         elif guess == secret_number:
             game_message = new_game()
             return game_message
@@ -56,6 +56,7 @@ def handle_guess(guess):
             return game_message
     else:
         return "Invalid query. Please enter a number."
+
 
 
 def new_game():
