@@ -11,8 +11,9 @@
 # def test_does_not_know_about_asteroids():
 #     assert process_query("asteroids") == "Unknown"
 
+# flake8: noqa: F841
+
 from app import handle_guess, new_game
-import pytest
 
 
 def test_handle_guess_lower():
