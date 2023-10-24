@@ -31,21 +31,31 @@ def test_handle_guess_invalid():
     assert handle_guess("abc") == "Invalid query. Please enter a number."
 
 
+def set_globals_correct():
+    global secret_number, num_g
+    secret_number = 60
+    num_g = 4
+
+
 def test_query_correct():
     with patch('app.new_game') as mock_new_game:
         mock_new_game.return_value = "Correct!"
-        mock_new_game.side_effect =
-        lambda:(global secret_number, num_g; secret_number = 60; num_g = 4)
+        mock_new_game.side_effect = set_globals_correct
         with app.app_context():
             result = query("60")
         assert result.startswith("Correct!")
 
 
+def set_globals_no_guesses():
+    global secret_number, num_g
+    secret_number = 60
+    num_g = 1
+
+
 def test_query_no_remaining_guesses():
     with patch('app.new_game') as mock_new_game:
         mock_new_game.return_value = "Unlucky! No remaining guesses."
-        mock_new_game.side_effect =
-        lambda:(global secret_number, num_g; secret_number = 60; num_g = 1)
+        mock_new_game.side_effect = set_globals_no_guesses
         with app.app_context():
             result = query("100")
         assert result.startswith("Unlucky! No remaining guesses.")
