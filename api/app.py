@@ -10,7 +10,7 @@ range = 100
 
 @app.route("/")
 def hello_world():
-    new_game()
+    game_message = new_game()
     return render_template("index.html")
 
 
@@ -28,7 +28,10 @@ def submit():
 def query():
     query_param = request.args.get("q")
     result = handle_guess(query_param)
-    return render_template("result.html", result=result)
+    game_message = (
+        new_game() if "No remaining guesses" in result or "Correct!" in result else ""
+    )
+    return render_template("result.html", result=result, game_message=game_message)
 
 
 def handle_guess(guess):
@@ -53,10 +56,15 @@ def handle_guess(guess):
 
 def new_game():
     global secret_number, num_g, range
+    num_g = 7
     secret_number = random.randrange(0, range)
-    print("New game! Range is [0, " + str(range) + ").")
-    print("Number of remaining guesses is " + str(num_g) + ".")
-    print(" ")
+    return (
+        "New game! Range is [0, "
+        + str(range)
+        + "). Number of remaining guesses is "
+        + str(num_g)
+        + "."
+    )
 
 
 new_game()
