@@ -42,4 +42,4 @@ def test_query_no_remaining_guesses():
     secret_number = 50
     num_g = 1
     result = handle_guess(100)
-        assert "Unlucky! No remaining guesses." in result
+    assert "Unlucky! No remaining guesses." in result
