@@ -18,9 +18,11 @@ def test_handle_guess_lower():
     result = handle_guess(1)
     assert result.startswith("Too low!. Number of remaining guesses is")
 
+
 def test_handle_guess_higher():
     result = handle_guess(100)
     assert result.startswith("Too high!. Number of remaining guesses is")
+
 
 def test_handle_guess_correct():
     for i in range(101):  # assuming the secret number is between 0 and 100
@@ -30,8 +32,10 @@ def test_handle_guess_correct():
     else:
         assert False, "The secret number was not found"
 
+
 def test_handle_guess_invalid():
     assert handle_guess("abc") == "Invalid query. Please enter a number."
+
 
 def test_handle_guess_no_remaining_guesses():
     for _ in range(8):  # assuming the maximum number of guesses is 7
