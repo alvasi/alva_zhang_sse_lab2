@@ -38,7 +38,7 @@ def query():
 
 def handle_guess(guess):
     global num_g
-    for guess.isdigit()
+    for guess.isdigit():
         guess = int(guess)
         if guess < secret_number and num_g > 1:
             num_g -= 1
