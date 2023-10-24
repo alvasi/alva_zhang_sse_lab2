@@ -25,12 +25,9 @@ def test_handle_guess_higher():
 
 
 def test_handle_guess_correct():
-    for i in range(101):  # assuming the secret number is between 0 and 100
-        result = handle_guess(i)
-        if result == "Correct!":
-            break
-    else:
-        assert False, "The secret number was not found"
+    global secret_number
+    secret_number = 60
+    assert handle_guess(60) == "Correct!"
 
 
 def test_handle_guess_invalid():
@@ -38,6 +35,7 @@ def test_handle_guess_invalid():
 
 
 def test_handle_guess_no_remaining_guesses():
-    for _ in range(8):  # assuming the maximum number of guesses is 7
-        result = handle_guess(100)  # always guess a number that is too high
-    assert result == "Unlucky! No remaining guesses."
+    global secret_number, num_g
+    secret_number = 100
+    num_g = 1
+    assert handle_guess(100) == "Unlucky! No remaining guesses."
