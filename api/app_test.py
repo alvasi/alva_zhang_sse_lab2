@@ -31,4 +31,4 @@ def test_handle_guess_invalid():
 
 
 def test_handle_guess_no_remaining_guesses():
-    assert handle_guess(80) == "No remaining guesses."
+    assert handle_guess(80) == "Unlucky! No remaining guesses."

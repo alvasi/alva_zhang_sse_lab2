@@ -10,6 +10,7 @@ range = 100
 
 @app.route("/")
 def hello_world():
+    new_game()
     return render_template("index.html")
 
 
@@ -51,8 +52,9 @@ def handle_guess(guess):
             return "Lower. Number of remaining guesses is " + str(num_g) + "."
         elif guess == secret_number:
             return "Correct!"
+            new_game()
         elif num_g <= 1:
-            return "No remaining guesses."
+            return "Unlucky! No remaining guesses."
     else:
         return "Invalid query. Please enter a number."
 
