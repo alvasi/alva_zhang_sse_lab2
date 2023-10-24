@@ -25,21 +25,25 @@ def test_handle_guess_higher():
     assert result.startswith("Too high!. Number of remaining guesses is")
 
 
-def test_query_correct():
-    global secret_number
-    secret_number = 60
-    result = query(60)
-    assert result.startswith("Correct!")
-
-
 def test_handle_guess_invalid():
     assert handle_guess("abc") == "Invalid query. Please enter a number."
 
 
+from unittest.mock import patch
+from app import app
+
+
+def test_query_correct():
+    with patch('app.new_game') as mock_new_game:
+        mock_new_game.return_value = "Correct!"
+        with app.app_context():
+            result = query("60")
+        assert result.startswith("Correct!")
+
+
 def test_query_no_remaining_guesses():
-    global num_g
-    global secret_number
-    num_g = 1
-    secret_number = 60
-    result = query(100)
-    assert result.startswith("Unlucky! No remaining guesses.")
+    with patch('app.new_game') as mock_new_game:
+        mock_new_game.return_value = "Unlucky! No remaining guesses."
+        with app.app_context():
+            result = query("100")
+        assert result.startswith("Unlucky! No remaining guesses.")
