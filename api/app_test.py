@@ -11,7 +11,7 @@ class TestGuessGame(TestCase):
     def test_guess_equals_num(self):
         with self.client.session_transaction() as session:
             session['num'] = 50
-            session['chances'] = 1
+            session['chances'] = 7
         rv = self.client.get('/guess', query_string={'guess': 50})
         self.assert200(rv)
         self.assert_template_used('result.html')
