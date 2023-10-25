@@ -8,7 +8,6 @@ class TestGuessGame(TestCase):
         app.config['TESTING'] = True
         return app
 
-
     def test_guess_equals_num(self):
         with self.client.session_transaction() as session:
             session['num'] = 50
@@ -18,7 +17,6 @@ class TestGuessGame(TestCase):
         self.assert_template_used('result.html')
         self.assertIn('Hurray! You got it in {} steps!'
         .format(7 - 7), rv.data.decode())
-
 
     def test_guess_less_than_num(self):
         with self.client.session_transaction() as session:
@@ -30,7 +28,6 @@ class TestGuessGame(TestCase):
         self.assertIn('Your number is less than the random number',
         rv.data.decode())
 
-
     def test_guess_greater_than_num(self):
         with self.client.session_transaction() as session:
             session['num'] = 50
@@ -40,7 +37,6 @@ class TestGuessGame(TestCase):
         self.assert_template_used('result.html')
         self.assertIn('Your number is greater than the random number',
         rv.data.decode())
-
 
     def test_no_chances_left(self):
         with self.client.session_transaction() as session:

@@ -15,8 +15,8 @@ def guess_game():
 
     guess = request.args.get('guess', type=int)
     if guess == session['num']:
-        result = 'Hurray! You got it in {} steps!'
-        .format(7 - session['chances'])
+        result = 'Hurray! You got it in {} steps!'.format
+        (7 - session['chances'])
         session.pop('num', None)  # remove the number from the session
         session.pop('chances', None)  # remove the chances from the session
     elif guess < session['num']:
