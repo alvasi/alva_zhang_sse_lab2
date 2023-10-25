@@ -1,6 +1,6 @@
 import unittest
 from flask_testing import TestCase
-from your_flask_app import app
+from app import app
 
 
 class TestGuessGame(TestCase):
