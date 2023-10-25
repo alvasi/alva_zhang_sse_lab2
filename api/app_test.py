@@ -9,11 +9,11 @@ class TestGuessGame(TestCase):
         return app
 
     def test_guess_equals_num(self):
-    with self.client.session_transaction() as session:
-        session['num'] = 50
-        session['chances'] = 7
-    rv = self.client.get('/guess', query_string={'guess': 50})
-    self.assertStatus(rv, 302)
+        with self.client.session_transaction() as session:
+            session['num'] = 50
+            session['chances'] = 7
+        rv = self.client.get('/guess', query_string={'guess': 50})
+        self.assertStatus(rv, 302)
 
     def test_guess_less_than_num(self):
         with self.client.session_transaction() as session:
@@ -36,11 +36,11 @@ class TestGuessGame(TestCase):
                       rv.data.decode())
 
     def test_no_chances_left(self):
-    with self.client.session_transaction() as session:
-        session['num'] = 50
-        session['chances'] = 1
-    rv = self.client.get('/guess', query_string={'guess': 25})
-    self.assertStatus(rv, 302)
+        with self.client.session_transaction() as session:
+            session['num'] = 50
+            session['chances'] = 1
+        rv = self.client.get('/guess', query_string={'guess': 25})
+        self.assertStatus(rv, 302)
 
 
 if __name__ == '__main__':
