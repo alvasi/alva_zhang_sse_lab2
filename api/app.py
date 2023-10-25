@@ -31,7 +31,8 @@ def guess_game():
 
     if guess == num:
         result = 'Hurray! You got it in {} steps!'.format(7 - chances)
-        return redirect(url_for('index', result=result))
+        session['result'] = result
+        return redirect(url_for('index'))
 
     elif guess < num:
         result = 'Your number is less than the random number'
@@ -43,7 +44,8 @@ def guess_game():
 
     if chances == 0:
         result = 'Phew! You lost the game. You are out of chances'
-        return redirect(url_for('index', result=result))
+        session['result'] = result
+        return redirect(url_for('index'))
 
     return render_template('result.html', result=result)
 

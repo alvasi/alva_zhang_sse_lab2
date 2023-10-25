@@ -25,6 +25,9 @@
         <li>If you guess the secret number correctly, you win!</li>
         <li>If you run out of guesses, the game is over.</li>
     </ul>
+    {% if result %}
+        <p>{{ result }}</p>
+    {% endif %}
     <p>Please enter your first guess below:</p>
     <form action="/guess" method="get">
         <label for="guessfield">Guess:</label>
