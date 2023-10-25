@@ -13,9 +13,13 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/guess')
+@app.route('/guess', methods=['GET', 'POST'])
 def guess_game():
-    guess = int(request.args.get('guess'))
+    if request.method == 'POST':
+        guess = int(request.form.get('guess'))
+    else:
+        guess = int(request.args.get('guess'))
+
     num = session['num']
     chances = session['chances']
 
