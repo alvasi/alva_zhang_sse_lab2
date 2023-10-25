@@ -23,7 +23,7 @@ def guess_game():
     elif guess > session['num']:
         result = 'Your number is greater than the random number'
         session['chances'] -= 1  # decrease the chances
-    if session['chances'] == 0:
+    if 'chances' not in session or session['chances'] == 0:
         result = 'Phew! You lost the game. You are out of chances'
         session.pop('num', None)  # remove the number from the session
         session.pop('chances', None)  # remove the chances from the session
