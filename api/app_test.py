@@ -26,7 +26,7 @@ class TestGuessGame(TestCase):
         self.assert200(rv)
         self.assert_template_used('result.html')
         self.assertIn('Your number is less than the random number',
-                       rv.data.decode())
+                      rv.data.decode())
 
     def test_guess_greater_than_num(self):
         with self.client.session_transaction() as session:
@@ -36,7 +36,7 @@ class TestGuessGame(TestCase):
         self.assert200(rv)
         self.assert_template_used('result.html')
         self.assertIn('Your number is greater than the random number',
-                       rv.data.decode())
+                      rv.data.decode())
 
     def test_no_chances_left(self):
         with self.client.session_transaction() as session:
@@ -46,7 +46,7 @@ class TestGuessGame(TestCase):
         self.assert200(rv)
         self.assert_template_used('result.html')
         self.assertIn('Phew! You lost the game. You are out of chances',
-                       rv.data.decode())
+                      rv.data.decode())
 
 
 if __name__ == '__main__':
