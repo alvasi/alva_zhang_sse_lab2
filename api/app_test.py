@@ -32,25 +32,31 @@ def test_handle_guess_invalid():
     assert "Invalid query. Please enter a number." in result
 
 
-def test_handle_guess_correct(monkeypatch):
+@pytest.fixture(scope="session")
+def global_variables_correct():
+    secret_number = 42
+    num_g = 3
+    return secret_number, num_g
+
+
+def test_handle_guess_correct(global_variables_correct):
     # Set up
     new_game()
-    monkeypatch.setattr("app", "secret_number", 42)
-    monkeypatch.setattr("app", "num_g", 3)
-    guess = "42"
-
-    # Execute
-    with pytest.raises(AssertionError):
-        assert handle_guess(guess) == "Correct!"
+    secret_number, num_g = global_variables_correct
+    result = handle_guess("42")
+    assert "Correct!" in result
 
 
-def test_handle_guess_no_remaining_guesses(monkeypatch):
+@pytest.fixture(scope="session")
+def global_variables_no_remain():
+    secret_number = 42
+    num_g = 1
+    return secret_number, num_g
+
+
+def test_handle_guess_no_remain(global_variables_no_remain):
     # Set up
     new_game()
-    monkeypatch.setattr("app", "secret_number", 42)
-    monkeypatch.setattr("app", "num_g", 1)
-    guess = "99"
-
-    # Execute
-    with pytest.raises(AssertionError):
-        assert handle_guess(guess) == "Unlucky! No remaining guesses."
+    secret_number, num_g = global_variables_no_remain
+    result = handle_guess("99")
+    assert "Unlucky! No remaining guesses." in result
