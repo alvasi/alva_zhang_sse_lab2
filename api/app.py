@@ -1,8 +1,8 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, render_template
 import random
 
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = 'some_secret_key'  # set a secret key for the session
 
 
@@ -13,10 +13,10 @@ def guess_game():
     if 'chances' not in session:
         session['chances'] = 7
 
-
     guess = request.args.get('guess', type=int)
     if guess == session['num']:
-        result = 'Hurray! You got it in {} steps!'.format(7 - session['chances'])
+        result = 'Hurray! You got it in {} steps!'
+        .format(7 - session['chances'])
         session.pop('num', None)  # remove the number from the session
         session.pop('chances', None)  # remove the chances from the session
     elif guess < session['num']:
@@ -32,13 +32,13 @@ def guess_game():
 
     return result
 
-if _name_ == '_main_':
+
+if __name__ == '__main__':
     app.run()
 
 
 @app.route("/")
 def hello_world():
-    new_game()
     return render_template("index.html")
 
 

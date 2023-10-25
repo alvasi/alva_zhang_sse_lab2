@@ -6,14 +6,5 @@
 <body style="background-color: aliceblue;">
     <h1>Guessing Game Result</h1>
     <p>{{ result }}</p>
-    {% if game_message %}
-        <p>{{ game_message }}</p>
-    {% endif %}    
-    {% if result != "No remaining guesses." %}
-        <form action="/query" method="get">
-            <input type="text" name="q" placeholder="Enter your guess">
-            <button type="submit">Submit</button>
-        </form>
-    {% endif %}
 </body>
 </html>
