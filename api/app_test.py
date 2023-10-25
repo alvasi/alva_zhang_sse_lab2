@@ -41,7 +41,7 @@ class TestGuessGame(TestCase):
     def test_no_chances_left(self):
         with self.client.session_transaction() as session:
             session['num'] = 50
-            session['chances'] = 0
+            session['chances'] = 1
         rv = self.client.get('/guess', query_string={'guess': 25})
         self.assert200(rv)
         self.assert_template_used('result.html')
