@@ -8,10 +8,8 @@ app.secret_key = 'some_secret_key'  # set a secret key for the session
 
 @app.route('/guess', methods=['GET'])
 def guess_game():
-    if 'num' not in session:
-        session['num'] = random.randint(1, 100)
-    if 'chances' not in session:
-        session['chances'] = 7
+    session.setdefault('num', random.randint(1, 100))
+    session.setdefault('chances', 7)
 
     guess = request.args.get('guess', type=int)
     if guess == session['num']:
