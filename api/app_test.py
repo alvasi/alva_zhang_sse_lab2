@@ -1,60 +1,53 @@
-# from app import process_query
+import unittest
+from flask_testing import TestCase
+from your_flask_app import app  # import your Flask app
 
 
-# def test_knows_about_dinosaurs():
-#     assert (
-#         process_query("dinosaurs") ==
-#         "Dinosaurs ruled the Earth 200 million years ago"
-#     )
+class TestGuessGame(TestCase):
+    def create_app(self):
+        app.config['TESTING'] = True
+        return app
 
 
-# def test_does_not_know_about_asteroids():
-#     assert process_query("asteroids") == "Unknown"
-
-# flake8: noqa: F841
-
-from app import handle_guess, new_game
-import pytest
-
-
-def test_handle_guess_lower():
-    result = handle_guess("1")
-    assert "Too low. Number of remaining guesses is" in result
+    def test_guess_equals_num(self):
+        with self.client.session_transaction() as session:
+            session['num'] = 50
+            session['chances'] = 7
+        rv = self.client.get('/guess', query_string={'guess': 50})
+        self.assert200(rv)
+        self.assert_template_used('result_template')  # replace with your result template
+        self.assertIn('Hurray! You got it in {} steps!'.format(7 - 7), rv.data.decode())
 
 
-def test_handle_guess_higher():
-    result = handle_guess("100")
-    assert "Too high. Number of remaining guesses is" in result
+    def test_guess_less_than_num(self):
+        with self.client.session_transaction() as session:
+            session['num'] = 50
+            session['chances'] = 7
+        rv = self.client.get('/guess', query_string={'guess': 25})
+        self.assert200(rv)
+        self.assert_template_used('result_template')  # replace with your result template
+        self.assertIn('Your number is less than the random number', rv.data.decode())
 
 
-def test_handle_guess_invalid():
-    result = handle_guess("abc")
-    assert "Invalid query. Please enter a number." in result
+    def test_guess_greater_than_num(self):
+        with self.client.session_transaction() as session:
+            session['num'] = 50
+            session['chances'] = 7
+        rv = self.client.get('/guess', query_string={'guess': 75})
+        self.assert200(rv)
+        self.assert_template_used('result_template')  # replace with your result template
+        self.assertIn('Your number is greater than the random number', rv.data.decode())
 
 
-@pytest.fixture(scope="session")
-def global_variables_correct():
-    secret_number = 42
-    num_g = 3
-    return secret_number, num_g
+    def test_no_chances_left(self):
+        with self.client.session_transaction() as session:
+            session['num'] = 50
+            session['chances'] = 0
+        rv = self.client.get('/guess', query_string={'guess': 25})
+        self.assert200(rv)
+        self.assert_template_used('result_template')  # replace with your result template
+        self.assertIn('Phew! You lost the game. You are out of chances', rv.data.decode())
 
 
-def test_handle_guess_correct(global_variables_correct):
-    # Set up
-    secret_number, num_g = global_variables_correct
-    result = handle_guess("42")
-    assert "Correct!" in result
-
-
-@pytest.fixture(scope="session")
-def global_variables_no_remain():
-    secret_number = 42
-    num_g = 1
-    return secret_number, num_g
-
-
-def test_handle_guess_no_remain(global_variables_no_remain):
-    # Set up
-    secret_number, num_g = global_variables_no_remain
-    result = handle_guess("99")
-    assert "Unlucky! No remaining guesses." in result
+if _name_ == '_main_':
+    unittest.main()

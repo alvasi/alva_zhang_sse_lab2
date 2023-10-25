@@ -1,11 +1,39 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, session
 import random
 
-app = Flask(__name__)
 
-secret_number = None
-num_g = 7
-range = 100
+app = Flask(_name_)
+app.secret_key = 'some_secret_key'  # set a secret key for the session
+
+
+@app.route('/guess', methods=['GET'])
+def guess_game():
+    if 'num' not in session:
+        session['num'] = random.randint(1, 100)
+    if 'chances' not in session:
+        session['chances'] = 7
+
+
+    guess = request.args.get('guess', type=int)
+    if guess == session['num']:
+        result = 'Hurray! You got it in {} steps!'.format(7 - session['chances'])
+        session.pop('num', None)  # remove the number from the session
+        session.pop('chances', None)  # remove the chances from the session
+    elif guess < session['num']:
+        result = 'Your number is less than the random number'
+        session['chances'] -= 1  # decrease the chances
+    elif guess > session['num']:
+        result = 'Your number is greater than the random number'
+        session['chances'] -= 1  # decrease the chances
+    if session['chances'] == 0:
+        result = 'Phew! You lost the game. You are out of chances'
+        session.pop('num', None)  # remove the number from the session
+        session.pop('chances', None)  # remove the chances from the session
+
+    return result
+
+if _name_ == '_main_':
+    app.run()
 
 
 @app.route("/")
@@ -22,53 +50,3 @@ def submit():
     return render_template(
         "hello.html", name=input_name, age=input_age, reason=input_reason
     )
-
-
-@app.route("/query", methods=["GET"])
-def query():
-    query_param = request.args.get("q")
-    result = handle_guess(query_param)
-    if "No remaining guesses" in result or "Correct!" in result:
-        game_message = new_game()
-    else:
-        game_message = ""
-    template_data = {"result": result, "game_message": game_message}
-    return render_template("result.html", **template_data)
-
-
-def handle_guess(guess):
-    global num_g
-    if guess.isdigit():
-        guess = int(guess)
-        if guess < secret_number and num_g > 1:
-            num_g -= 1
-            return "Too low. Number of remaining guesses is "
-            + str(num_g) + "."
-        elif guess > secret_number and num_g > 1:
-            num_g -= 1
-            return "Too high. Number of remaining guesses is "
-            + str(num_g) + "."
-        elif guess == secret_number:
-            new_game()
-            return "Correct!"
-        elif num_g <= 1:
-            new_game()
-            return "Unlucky! No remaining guesses."
-    else:
-        return "Invalid query. Please enter a number."
-
-
-def new_game():
-    global secret_number, num_g, range
-    num_g = 7
-    secret_number = random.randrange(0, range)
-    return (
-        "New game! Range is [0, "
-        + str(range)
-        + "). Number of remaining guesses is "
-        + str(num_g)
-        + "."
-    )
-
-
-new_game()
