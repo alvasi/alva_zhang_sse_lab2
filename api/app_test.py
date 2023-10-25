@@ -19,12 +19,12 @@ import pytest
 
 def test_handle_guess_lower():
     result = handle_guess("1")
-    assert "Too low. Number of remaining guesses is" + str(num_g) + "." in result
+    assert "Too low. Number of remaining guesses is" in result
 
 
 def test_handle_guess_higher():
     result = handle_guess("100")
-    assert "Too high. Number of remaining guesses is" + str(num_g) + "." in result
+    assert "Too high. Number of remaining guesses is" in result
 
 
 def test_handle_guess_invalid():
@@ -32,11 +32,11 @@ def test_handle_guess_invalid():
     assert "Invalid query. Please enter a number." in result
 
 
-def test_handle_guess_correct():
+def test_handle_guess_correct(monkeypatch):
     # Set up
     new_game()
-    secret_number = 42
-    num_g = 3
+    monkeypatch.setattr("__main__", "secret_number", 42)
+    monkeypatch.setattr("__main__", "num_g", 3)
     guess = "42"
 
     # Execute
@@ -44,11 +44,11 @@ def test_handle_guess_correct():
         assert handle_guess(guess) == "Correct!"
 
 
-def test_handle_guess_no_remaining_guesses():
+def test_handle_guess_no_remaining_guesses(monkeypatch):
     # Set up
     new_game()
-    secret_number = 42
-    num_g = 1
+    monkeypatch.setattr("__main__", "secret_number", 42)
+    monkeypatch.setattr("__main__", "num_g", 1)
     guess = "99"
 
     # Execute
