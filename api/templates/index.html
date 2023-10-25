@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        Hello World!
-    </head>
+<head>
+    <title>Guessing Game</title>
+</head>
+<body>
+    <h1>Hello World!</h1>
     <p>This module is very confusing. TT</p>
     <p>Save us please. TT</p>
-    <img src = "https://a.pinatafarm.com/1500x1005/2347970ac0/jackie-chan-confused.jpg" alt="confused jackie"
-    style="width:900px; height:600px;">
-    <p>Please let us know your name, age and reason if you agree with us.</p>
+    <img src="https://a.pinatafarm.com/1500x1005/2347970ac0/jackie-chan-confused.jpg" alt="confused jackie" style="width:900px; height:600px;">
+    <p>Please let us know your name, age, and reason if you agree with us.</p>
     <form action="/submit" method="post">
         <label for="namefield">Name:</label>
         <input type="text" id="namefield" name="name">
@@ -24,9 +26,10 @@
         <li>If you run out of guesses, the game is over.</li>
     </ul>
     <p>Please enter your first guess below:</p>
-    <form action="/query" method="get">
-        <label for="queryfield">Guess:</label>
-        <input type="text" id="queryfield" name="q">
+    <form action="/guess" method="get">
+        <label for="guessfield">Guess:</label>
+        <input type="number" id="guessfield" name="guess">
         <input type="submit" value="Submit Guess">
     </form>
+</body>
 </html>
