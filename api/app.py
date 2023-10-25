@@ -30,7 +30,7 @@ def guess_game():
         session.pop('num', None)  # remove the number from the session
         session.pop('chances', None)  # remove the chances from the session
 
-    return result
+    return render_template('result.html', result=result)
 
 
 if __name__ == '__main__':
