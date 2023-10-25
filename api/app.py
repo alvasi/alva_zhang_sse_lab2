@@ -6,29 +6,33 @@ app = Flask(__name__)
 app.secret_key = 'some_secret_key'  # set a secret key for the session
 
 
-@app.route('/guess', methods=['GET'])
+@app.route('/')
+def index():
+    session['num'] = random.randint(1, 100)
+    session['chances'] = 7
+    return render_template('index.html')
+
+
+@app.route('/guess')
 def guess_game():
-    session.setdefault('num', random.randint(1, 100))
-    session.setdefault('chances', 7)
-
-    guess = request.args.get('guess', type=int)
-    if guess == session['num']:
-        result = 'Hurray! You got it in {} steps!'.format
-        (7 - session['chances'])
-        session.pop('num', None)  # remove the number from the session
-        session.pop('chances', None)  # remove the chances from the session
-    elif guess < session['num']:
+    guess = int(request.args.get('guess'))
+    num = session['num']
+    chances = session['chances']
+    
+    if guess == num:
+        result = 'Hurray! You got it in {} steps!'.format(7 - chances)
+    elif guess < num:
         result = 'Your number is less than the random number'
-        session['chances'] -= 1  # decrease the chances
-    elif guess > session['num']:
+    else:
         result = 'Your number is greater than the random number'
-        session['chances'] -= 1  # decrease the chances
-    if 'chances' not in session or session['chances'] == 0:
+    
+    chances -= 1
+    session['chances'] = chances
+    
+    if chances == 0:
         result = 'Phew! You lost the game. You are out of chances'
-        session.pop('num', None)  # remove the number from the session
-        session.pop('chances', None)  # remove the chances from the session
-
-    return render_template("result.html", result=result)
+    
+    return render_template('result.html', result=result)
 
 
 if __name__ == '__main__':
