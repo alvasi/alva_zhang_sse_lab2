@@ -15,8 +15,8 @@ class TestGuessGame(TestCase):
         rv = self.client.get('/guess', query_string={'guess': 50})
         self.assert200(rv)
         self.assert_template_used('result.html')
-        self.assertIn('Hurray! You got it in {} steps!'
-                      .format(7 - session['chances']), rv.data.decode())
+        self.assertIn('Hurray! You got it in 0 steps!',
+                      rv.data.decode())
 
     def test_guess_less_than_num(self):
         with self.client.session_transaction() as session:
