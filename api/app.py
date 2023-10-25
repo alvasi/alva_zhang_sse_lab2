@@ -11,7 +11,8 @@ app.secret_key = 'some_secret_key'  # set a secret key for the session
 def index():
     session['num'] = random.randint(1, 100)
     session['chances'] = 7
-    return render_template('index.html')
+    result = session.pop('result', None)
+    return render_template('index.html', result=result)
 
 
 @app.route('/guess', methods=['GET', 'POST'])
