@@ -41,7 +41,6 @@ def global_variables_correct():
 
 def test_handle_guess_correct(global_variables_correct):
     # Set up
-    new_game()
     secret_number, num_g = global_variables_correct
     result = handle_guess("42")
     assert "Correct!" in result
@@ -56,7 +55,6 @@ def global_variables_no_remain():
 
 def test_handle_guess_no_remain(global_variables_no_remain):
     # Set up
-    new_game()
     secret_number, num_g = global_variables_no_remain
     result = handle_guess("99")
     assert "Unlucky! No remaining guesses." in result
