@@ -30,10 +30,11 @@ def guess_game():
         session.pop('num', None)  # remove the number from the session
         session.pop('chances', None)  # remove the chances from the session
 
-    return render_template('result.html', result=result)
+    return render_template("result.html", result=result)
 
 
 if __name__ == '__main__':
+    app.template_folder = 'templates'
     app.run()
 
 
