@@ -35,8 +35,8 @@ def test_handle_guess_invalid():
 def test_handle_guess_correct(monkeypatch):
     # Set up
     new_game()
-    monkeypatch.setattr("app_test", "secret_number", 42)
-    monkeypatch.setattr("app_test", "num_g", 3)
+    monkeypatch.setattr("app", "secret_number", 42)
+    monkeypatch.setattr("app", "num_g", 3)
     guess = "42"
 
     # Execute
@@ -47,8 +47,8 @@ def test_handle_guess_correct(monkeypatch):
 def test_handle_guess_no_remaining_guesses(monkeypatch):
     # Set up
     new_game()
-    monkeypatch.setattr("app_test", "secret_number", 42)
-    monkeypatch.setattr("app_test", "num_g", 1)
+    monkeypatch.setattr("app", "secret_number", 42)
+    monkeypatch.setattr("app", "num_g", 1)
     guess = "99"
 
     # Execute
