@@ -23,6 +23,11 @@ def guess_game():
     num = session['num']
     chances = session['chances']
 
+    if num is None or chances is None:
+        session['num'] = random.randint(1, 100)
+        session['chances'] = 7
+        return redirect(url_for('index'))
+
     if guess == num:
         result = 'Hurray! You got it in {} steps!'.format(7 - chances)
     elif guess < num:
