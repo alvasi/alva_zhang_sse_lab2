@@ -18,20 +18,20 @@ def guess_game():
     guess = int(request.args.get('guess'))
     num = session['num']
     chances = session['chances']
-    
+
     if guess == num:
         result = 'Hurray! You got it in {} steps!'.format(7 - chances)
     elif guess < num:
         result = 'Your number is less than the random number'
     else:
         result = 'Your number is greater than the random number'
-    
+
     chances -= 1
     session['chances'] = chances
-    
+
     if chances == 0:
         result = 'Phew! You lost the game. You are out of chances'
-    
+
     return render_template('result.html', result=result)
 
 
