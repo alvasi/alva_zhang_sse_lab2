@@ -78,10 +78,9 @@ def test_multiply():
 
 
 def test_squarecube():
-    assert(
+    assert (
         process_query(
              "Which of the following numbers is "
              "both a square and a cube: 16, 1, "
-             "1315, 125, 1758, 2639, 3720?") 
-             == ["1", "125"]
+             "1315, 125, 1758, 2639, 3720?") == ["1", "125"]
     )
