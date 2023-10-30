@@ -138,4 +138,3 @@ def is_square_and_cube(number):
     root = number ** (1/6)
     return (abs(root ** 2 - number) < 0.0001 and
             abs(root ** 3 - number) < 0.0001)
-
