@@ -136,5 +136,5 @@ def find_square_and_cube_numbers(text):
 def is_square_and_cube(number):
     # Check if a number is both a square and a cube.
     root = number ** (1/6)
-    return abs(root ** 2 - number) < 0.0001 and abs(root ** 3 - number) < 0.0001
-
+    return abs(root ** 2 - number) < 0.0001 
+    and abs(root ** 3 - number) < 0.0001
