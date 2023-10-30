@@ -1,6 +1,7 @@
 import unittest
 from flask_testing import TestCase
 from app import app
+from app import process_query
 
 
 class TestGuessGame(TestCase):
@@ -45,3 +46,14 @@ class TestGuessGame(TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+def test_knows_about_dinosaurs():
+    assert (
+        process_query("dinosaurs") ==
+        "Dinosaurs ruled the Earth 200 million years ago"
+    )
+
+
+def test_does_not_know_about_asteroids():
+    assert process_query("asteroids") == "Unknown"
