@@ -14,7 +14,7 @@ def index():
     session['chances'] = 7
     result = session.pop('result', None)
     return render_template('index.html', result=result)
-import re
+
 
 @app.route('/guess', methods=['GET', 'POST'])
 def guess_game():
@@ -41,7 +41,7 @@ def guess_game():
     else:
         result = 'Your number is greater than the random number'
 
-    chances -=  1
+    chances -= 1
     session['chances'] = chances
 
     if chances == 0:
@@ -106,7 +106,7 @@ def find_largest_number(question):
 def multiply(text):
     # Use regular expressions to find the two integers in the sentence.
     numbers = re.findall(r'\d+', text)
-    
+
     if len(numbers) == 2:
         # Convert the found numbers to integers and calculate their product.
         number1 = int(numbers[0])
