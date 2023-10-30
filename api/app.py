@@ -85,5 +85,16 @@ def process_query(q):
         return "Unknown"
     elif q == "What is your name?":
         return "AZ"
+    elif "Which of the following numbers is the largest: " in q:
+        return find_largest_number(q)
     else:
         return "Unknown"
+
+
+def find_largest_number(question):
+    if "Which of the following numbers is the largest: " in question:
+        numbers_str = question.split(": ")[1]
+        numbers = [int(num.strip("?").strip())
+                   for num in numbers_str.split(",")]
+        return str(max(numbers))
+    return None
