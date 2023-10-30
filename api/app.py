@@ -87,11 +87,8 @@ def process_query(q):
         return "AZ"
     elif "plus" in q:
         numbers = q.split(" plus ")
-        try:
-            num1 = int(numbers[0])
-            num2 = int(numbers[1])
-            return str(num1 + num2)
-        except ValueError:
-            return "Invalid numbers"
+        num1 = int(numbers[0])
+        num2 = int(numbers[1])
+        return str(num1 + num2)
     else:
         return "Unknown"
