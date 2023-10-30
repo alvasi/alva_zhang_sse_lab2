@@ -69,3 +69,10 @@ def test_largest_num():
             "Which of the following numbers is "
             "the largest: 61, 98, 68?") == "98"
     )
+
+
+def test_multiply():
+    assert (
+        process_query(
+            "What is 69 multiplied by 10?") == "690"
+    )
