@@ -128,9 +128,9 @@ def find_square_and_cube_numbers(text):
     for number_str in numbers:
         number = int(number_str)
         if is_square_and_cube(number):
-            square_and_cube_numbers.append(number)
+            square_and_cube_numbers.append(str(number))
 
-    return square_and_cube_numbers
+    return ", ".join(square_and_cube_numbers)
 
 
 def is_square_and_cube(number):
