@@ -84,5 +84,5 @@ def test_squarecube():
         "1315, 125, 1758, 2639, 3720?"
     )
     expected_result = ["1", "125"]
-    assert all(item in result for item in expected_result)
-    and all(item in expected_result for item in result)
+    assert all(item in result for item in expected_result) and
+           all(item in expected_result for item in result)
