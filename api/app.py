@@ -85,5 +85,13 @@ def process_query(q):
         return "Unknown"
     elif q == "What is your name?":
         return "AZ"
+    elif "plus" in q:
+        numbers = q.split(" plus ")
+        try:
+            num1 = int(numbers[0])
+            num2 = int(numbers[1])
+            return str(num1 + num2)
+        except:
+            return "Invalid Numbers"
     else:
         return "Unknown"
