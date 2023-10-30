@@ -41,7 +41,7 @@ def guess_game():
     else:
         result = 'Your number is greater than the random number'
 
-    chances -= 1import re
+    chances -=  1
     session['chances'] = chances
 
     if chances == 0:
@@ -89,7 +89,7 @@ def process_query(q):
     elif "Which of the following numbers is the largest: " in q:
         return find_largest_number(q)
     elif "multiplied by " in q:
-        return multiply(q)
+        return multiply()
     else:
         return "Unknown"
 
