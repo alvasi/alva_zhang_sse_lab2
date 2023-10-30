@@ -130,10 +130,7 @@ def find_square_and_cube_numbers(text):
         if is_square_and_cube(number):
             square_and_cube_numbers.append(number)
 
-    if square_and_cube_numbers:
-        return ", ".join(map(str, square_and_cube_numbers))
-    else:
-        return "None found"
+    return square_and_cube_numbers
 
 
 def is_square_and_cube(number):

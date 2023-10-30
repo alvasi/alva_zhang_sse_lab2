@@ -83,5 +83,5 @@ def test_squarecube():
         "both a square and a cube: 16, 1, "
         "1315, 125, 1758, 2639, 3720?"
     )
-    assert "1" in result
-    assert "125" in result
+    expected_result = [1, 125]
+    assert result == expected_result
