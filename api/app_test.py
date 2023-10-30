@@ -62,8 +62,10 @@ def test_does_not_know_about_asteroids():
 def test_knows_name():
     assert process_query("What is your name?") == "AZ"
 
+
 def test_adding_numbers():
     assert process_query("What is 6 plus 59?") == "65"
+
 
 def test_invalid_numbers():
     assert process_query("What is six plus fifty-nine?") == "Invalid numbers"

@@ -91,7 +91,8 @@ def process_query(q):
             num1 = int(numbers[0])
             num2 = int(numbers[1])
             return str(num1 + num2)
-        except:
-            return "Invalid Numbers"
+        except ValueError:
+            return "Invalid numbers"
     else:
         return "Unknown"
+
