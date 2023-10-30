@@ -90,6 +90,8 @@ def process_query(q):
         return find_largest_number(q)
     elif "multiplied by " in q:
         return multiply(q)
+    elif "both a square and a cube: " in q:
+        return find_square_and_cube_numbers(q)
     else:
         return "Unknown"
 
@@ -116,3 +118,25 @@ def multiply(text):
     else:
         # Handle the case where two numbers are not found in the input.
         return None
+
+
+def find_square_and_cube_numbers(text):
+    # Use regular expressions to find integers in the sentence.
+    numbers = re.findall(r'\d+', text)
+    square_and_cube_numbers = []
+
+    for number_str in numbers:
+        number = int(number_str)
+        if is_square_and_cube(number):
+            square_and_cube_numbers.append(number)
+
+    if square_and_cube_numbers:
+        return ", ".join(map(str, square_and_cube_numbers))
+    else:
+        return "None found"
+
+
+def is_square_and_cube(number):
+    # Check if a number is both a square and a cube.
+    root = int(number ** (1/6))
+    return root ** 2 == number and root ** 3 == number

@@ -74,5 +74,14 @@ def test_largest_num():
 def test_multiply():
     assert (
         process_query(
-            "What is 69 multiplied by 10?") == 690
+            "What is 69 multiplied by 10?") == "690"
+    )
+
+
+def test_squarecube():
+    assert (
+        process_query(
+            "Which of the following numbers is "
+            "both a square and a cube: 16, 1, "
+            "1315, 125, 1758, 2639, 3720?") == 1, 125
     )
