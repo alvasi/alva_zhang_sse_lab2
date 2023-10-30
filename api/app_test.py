@@ -65,6 +65,8 @@ def test_knows_name():
 
 def test_largest_num():
     assert (
-        process_query("Which of the following numbers is the largest: 61, 98, 68?") ==
-        "98"
+        process_query(
+            "Which of the following numbers is " 
+            "the largest: 61, 98, 68?") ==
+            "98"
     )
