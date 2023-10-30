@@ -85,5 +85,7 @@ def process_query(q):
         return "Unknown"
     elif q == "What is your name?":
         return "AZ"
+    elif q.startswith("Which of the following numbers is the largest: "):
+        return max(q)
     else:
         return "Unknown"
