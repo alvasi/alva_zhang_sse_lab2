@@ -89,7 +89,7 @@ def process_query(q):
     elif "Which of the following numbers is the largest: " in q:
         return find_largest_number(q)
     elif "multiplied by " in q:
-        return multiply()
+        return multiply(q)
     else:
         return "Unknown"
 
