@@ -85,4 +85,3 @@ def test_squarecube():
     )
     expected_result = ["1", "125"]
     assert all(item in result for item in expected_result)
-
