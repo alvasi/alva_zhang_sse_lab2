@@ -95,4 +95,3 @@ def process_query(q):
             return "Invalid numbers"
     else:
         return "Unknown"
-
