@@ -74,5 +74,5 @@ def test_largest_num():
 def test_multiply():
     assert (
         process_query(
-            "What is 69 multiplied by 10?") == "690"
+            "What is 69 multiplied by 10?") == 690
     )
