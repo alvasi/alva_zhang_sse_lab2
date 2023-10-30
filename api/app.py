@@ -88,7 +88,7 @@ def process_query(q):
     elif "plus" in q:
         words = q.split()
         try:
-            num1_index = words.index("is") - 1
+            num1_index = words.index("is") + 1
             num2_index = words.index("plus") + 1
             num1 = int(words[num1_index])
             num2 = int(words[num2_index])
