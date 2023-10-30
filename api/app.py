@@ -94,5 +94,33 @@ def process_query(q):
             return str(num1 + num2)
         else:
             return "Invalid Numbers"
+    elif "Which of the following numbers is the largest: " in q:
+        return find_largest_number(q)
+    elif "multiplied by " in q:
+        return multiply(q)
     else:
         return "Unknown"
+
+
+def find_largest_number(question):
+    if "Which of the following numbers is the largest: " in question:
+        numbers_str = question.split(": ")[1]
+        numbers = [int(num.strip("?").strip())
+                   for num in numbers_str.split(",")]
+        return str(max(numbers))
+    return None
+
+
+def multiply(text):
+    # Use regular expressions to find the two integers in the sentence.
+    numbers = re.findall(r'\d+', text)
+
+    if len(numbers) == 2:
+        # Convert the found numbers to integers and calculate their product.
+        number1 = int(numbers[0])
+        number2 = int(numbers[1])
+        product = number1 * number2
+        return product
+    else:
+        # Handle the case where two numbers are not found in the input.
+        return None

@@ -69,3 +69,18 @@ def test_adding_numbers():
 
 def test_invalid_numbers():
     assert process_query("What is six plus fifty-nine?") == "Invalid numbers"
+
+def test_largest_num():
+    assert (
+        process_query(
+            "Which of the following numbers is "
+            "the largest: 61, 98, 68?") == "98"
+    )
+
+
+def test_multiply():
+    assert (
+        process_query(
+            "What is 69 multiplied by 10?") == 690
+    )
+
