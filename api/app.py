@@ -90,7 +90,7 @@ def process_query(q):
         return find_largest_number(q)
     elif "multiplied by " in q:
         return multiply(q)
-    elif "both a square and a cube: " in q:
+    elif "Which of the following numbers is both a square and a cube: " in q:
         return find_square_and_cube_numbers(q)
     else:
         return "Unknown"
@@ -130,7 +130,7 @@ def find_square_and_cube_numbers(text):
         if is_square_and_cube(number):
             square_and_cube_numbers.append(str(number))
 
-    return ", ".join(square_and_cube_numbers)
+    return square_and_cube_numbers
 
 
 def is_square_and_cube(number):
