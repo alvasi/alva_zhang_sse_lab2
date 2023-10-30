@@ -130,7 +130,7 @@ def find_square_and_cube_numbers(text):
         if is_square_and_cube(number):
             square_and_cube_numbers.append(number)
 
-    return square_and_cube_numbers
+    return sorted(square_and_cube_numbers)
 
 
 def is_square_and_cube(number):
