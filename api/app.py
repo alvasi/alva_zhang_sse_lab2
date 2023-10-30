@@ -108,7 +108,7 @@ def find_largest_number(question):
 def multiply(text):
     # Use regular expressions to find the two integers in the sentence.
     numbers = re.findall(r'\d+', text)
-    
+
     if len(numbers) == 2:
         # Convert the found numbers to integers and calculate their product.
         number1 = int(numbers[0])
