@@ -108,16 +108,16 @@ def find_largest_number(question):
 def multiply(text):
     # Use regular expressions to find the two integers in the sentence.
     numbers = re.findall(r'\d+', text)
-
+    
     if len(numbers) == 2:
         # Convert the found numbers to integers and calculate their product.
         number1 = int(numbers[0])
         number2 = int(numbers[1])
         product = number1 * number2
-        return product
+        return str(product)
     else:
         # Handle the case where two numbers are not found in the input.
-        return None
+        return "Unable to extract and multiply the numbers."
 
 
 def find_square_and_cube_numbers(text):
