@@ -86,6 +86,14 @@ def process_query(q):
         return "Unknown"
     elif q == "What is your name?":
         return "AZ"
+    elif "plus" in q:
+        numbers = re.findall(r'\d+', q)
+        if len(numbers) == 2:
+            num1 = int(numbers[0])
+            num2 = int(numbers[1])
+            return str(num1 + num2)
+        else:
+            return "Invalid Numbers"
     elif "Which of the following numbers is the largest: " in q:
         return find_largest_number(q)
     elif "multiplied by " in q:
