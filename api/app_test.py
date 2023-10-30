@@ -68,7 +68,7 @@ def test_adding_numbers():
 
 
 def test_minus():
-    assert process_query("What is 75 minus 65?") == "10"   
+    assert process_query("What is 75 minus 65?") == "10"  
 
 
 def test_invalid_numbers():
