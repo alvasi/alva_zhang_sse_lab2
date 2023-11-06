@@ -2,6 +2,7 @@ from flask import Flask, request, session, render_template
 from flask import redirect, url_for
 import random
 import re
+import requests
 
 
 app = Flask(__name__)
@@ -169,6 +170,12 @@ def is_square_and_cube(number):
 @app.route("/gitquery", methods=["GET"])
 def gitquery():
     input_username = request.args.get("gitquery")
+    response = requests.get(“https://api.github.com/users/{input_username}/repos”)
+    if response.status_code == 200:
+        repos = response.json() 
+        for repo in repos:
+            repo_names = repo[“full_name”]
+            result = ", ".join(repo_names)
     return render_template(
-        "gitquery.html", gitquery=input_username
+        "gitquery.html", gitquery=input_username, result=result
     )
