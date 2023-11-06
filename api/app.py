@@ -177,7 +177,7 @@ def gitquery():
         repos = response.json()
         for repo in repos:
             commit_response = requests.get(
-                f"https://api.github.com/users/{input_username}/
+                f"https://api.github.com/users/{input_username}/\
                 {repos['name']}/commits"
             )
             if commit_response.status_code == 200:
