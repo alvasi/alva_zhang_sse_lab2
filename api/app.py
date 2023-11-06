@@ -170,5 +170,5 @@ def is_square_and_cube(number):
 def gitquery():
     input_username = request.form.get("gitquery")
     return render_template(
-        "gitquery.html", gitquery = input_username
+        "gitquery.html", gitquery=input_username
     )
