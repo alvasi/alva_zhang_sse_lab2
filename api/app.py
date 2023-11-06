@@ -178,5 +178,5 @@ def gitquery():
         # repo_names = [repo["full_name"] for repo in repos]
         # result = ", ".join(repo_names)
     return render_template(
-        "gitquery.html", gitquery=input_username, repo=repos
+        "gitquery.html", gitquery=input_username, repos=repos
     )
