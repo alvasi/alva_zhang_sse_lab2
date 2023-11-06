@@ -170,7 +170,7 @@ def is_square_and_cube(number):
 @app.route("/gitquery", methods=["GET"])
 def gitquery():
     input_username = request.args.get("gitquery")
-    response = requests.get(“https://api.github.com/users/{input_username}/repos”)
+    response = requests.get(f“https://api.github.com/users/{input_username}/repos”)
     if response.status_code == 200:
         repos = response.json() 
         for repo in repos:
