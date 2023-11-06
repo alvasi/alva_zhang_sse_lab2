@@ -9,17 +9,19 @@
         <tr>
             <th>Repository</th>
             <th>Last Updated</th>
-            <th>Latest Commit</th>
+            <th>Latest Commits</th>
         </tr>
         {% for repo in repos %}
         <tr>
             <td>{{ repo.full_name }}</td>
             <td>{{ repo.updated_at }}</td>
             <td>
-                <p> Commit hash: {{ repo.latest_commit.sha }} </p>
-                <p> Author: {{ repo.latest_commit.author.name }}</p>
-                <p> Date: {{ repo.latest_commit.author.date }}</p>
-                <p> Message: {{ repo.latest_commit.message }}</p>
+                {% for commit in repo.latest_commits %}
+                <p> Commit hash: {{ commit.sha }} </p>
+                <p> Author: {{ commit.author.name }}</p>
+                <p> Date: {{ commit.author.date }}</p>
+                <p> Message: {{ commit.message }}</p>
+                {% endfor %}
             </td>
         </tr>
         {% endfor %}

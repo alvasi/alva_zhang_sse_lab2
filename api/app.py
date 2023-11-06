@@ -181,7 +181,8 @@ def gitquery():
                 {repos['name']}/commits"
             )
             if commit_response.status_code == 200:
-                repo['latest_commit'] = commit_response.json()[0]
+                commits = commit_response.json()[:5]
+                repo['latest_commits'] = commits
         # repo_names = [repo["full_name"] for repo in repos]
         # result = ", ".join(repo_names)
     return render_template(
