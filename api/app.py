@@ -175,8 +175,8 @@ def gitquery():
     )
     if response.status_code == 200:
         repos = response.json()
-        repo_names = [repo["full_name"] for repo in repos]
-        result = ", ".join(repo_names)
+        # repo_names = [repo["full_name"] for repo in repos]
+        # result = ", ".join(repo_names)
     return render_template(
-        "gitquery.html", gitquery=input_username, result=result
+        "gitquery.html", gitquery=input_username, repo=repos
     )

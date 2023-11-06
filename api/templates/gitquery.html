@@ -5,6 +5,17 @@
 </head>
 <body>
     <p>Hello {{ gitquery }}</p>
-    <p>Repositories: {{ result }}</p>
+    <table>
+        <tr>
+            <th>Repository</th>
+            <th>Last Updated</th>
+        </tr>
+        {% for repo in repos %}
+        <tr>
+            <td>{{ repo.full_name }}</td>
+            <td>{{ repo.updated_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
