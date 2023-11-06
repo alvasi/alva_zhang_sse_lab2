@@ -177,11 +177,10 @@ def gitquery():
         repos = response.json()
         for repo in repos:
             commit_response = requests.get(
-                f"https://api.github.com/users/{input_username}/\
-                {repos['name']}/commits"
+                f"https://api.github.com/repos/{repo['full_name']}/commits"
             )
             if commit_response.status_code == 200:
-                commits = commit_response.json()[:5]
+                commits = commit_response.json()[:1]
                 repo['latest_commits'] = commits
         # repo_names = [repo["full_name"] for repo in repos]
         # result = ", ".join(repo_names)
