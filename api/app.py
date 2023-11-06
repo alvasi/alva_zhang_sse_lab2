@@ -166,8 +166,9 @@ def is_square_and_cube(number):
     return square_root.is_integer() and cube_root.is_integer()
 
 
-@app.route("/gitquery", methods=["GET"])
+@app.route("/gitquery", methods=["POST"])
 def gitquery():
-    query_param = request.args.get("gitquery")
-    result = process_query(query_param)
-    return render_template('gitquery.html', result=result)
+    input_username = request.form.get("gitquery")
+    return render_template(
+        "gitquery.html", gitquery = input_username
+    )
