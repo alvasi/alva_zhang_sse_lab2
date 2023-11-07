@@ -2,7 +2,6 @@
 <html>
 <head>
    <title>Hello GitUser</title>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -39,9 +38,6 @@
 
     <h3>Contribution Calendar</h3>
     <img src="https://ghchart.rshah.org/{{ gitquery }}" alt="Github Contributions Chart">
-
-    <h3>Language Distribution</h3>
-    <canvas id="languageChart"></canvas>
 
     <h2>Here is the list of repositories for: {{ gitquery }}</h2>
     <table class="gap">
@@ -103,32 +99,5 @@
         font-weight: bold;
         }
     </style>
-    <script>
-        var ctx = document.getElementById('languageChart').getContext('2d');
-        var labels = {{ language_distribution.keys()|tojson }};
-        var data = {{ language_distribution.values()|tojson }};
-        var backgroundColors = labels.map(function() { return getRandomColor(); });
-
-        var chartData = {
-            labels: labels,
-            datasets: [{
-                data: data,
-                backgroundColor: backgroundColors,
-                hoverOffset: 4
-            }]
-        };
-
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: chartData,
-        });
-
-        function getRandomColor() {
-            var r = Math.floor(Math.random() * 256); // Random between 0-255
-            var g = Math.floor(Math.random() * 256); // Random between 0-255
-            var b = Math.floor(Math.random() * 256); // Random between 0-255
-            return 'rgb(' + r + ',' + g + ',' + b + ')'; 
-        }
-    </script>
 </body>
 </html>

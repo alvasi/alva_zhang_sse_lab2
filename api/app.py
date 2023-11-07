@@ -199,7 +199,6 @@ def gitquery():
         followers = followers_response.json()
         following = following_response.json()
 
-        language_distribution = {}
         for repo in repos:
             commit_response = requests.get(
                 f"https://api.github.com/repos/{repo['full_name']}/commits"
@@ -214,13 +213,6 @@ def gitquery():
                     commit["commit"]["author"]["date"] = (
                         commit["commit"]["author"]["date"]
                     )
-            if languages_response.status_code == 200:
-                repo['language_distribution'] = languages_response.json()
-                lang_dist_items = repo['language_distribution'].items()
-                for language, bytes_ in lang_dist_items:
-                    if language not in language_distribution:
-                        language_distribution[language] = 0
-                    language_distribution[language] += bytes_
 
         return render_template(
             "gitquery.html",
@@ -229,7 +221,6 @@ def gitquery():
             repos=repos,
             followers=followers,
             following=following,
-            language_distribution=language_distribution,
         )
     else:
         return render_template("error.html")
