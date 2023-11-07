@@ -173,25 +173,30 @@ def datetimeformat(value, format="%Y-%m-%d %H:%M:%S"):
     return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").strftime(format)
 
 
-
 @app.route("/gitquery", methods=["GET"])
 def gitquery():
     input_username = request.args.get("gitquery")
-    user_response = requests.get(f"https://api.github.com/users/{input_username}")
-    repos_response = requests.get(f"https://api.github.com/users/{input_username}/repos")
-    
+    user_response = requests.get(
+        f"https://api.github.com/users/{input_username}")
+    repos_response = requests.get(
+        f"https://api.github.com/users/{input_username}/repos")
+
     if user_response.status_code == 200 and repos_response.status_code == 200:
         user_data = user_response.json()
         repos = repos_response.json()
-        
+
         for repo in repos:
-            commit_response = requests.get(f"https://api.github.com/repos/{repo['full_name']}/commits")
+            commit_response = requests.get(
+                f"https://api.github.com/repos/{repo['full_name']}/commits")
             if commit_response.status_code == 200:
                 commits = commit_response.json()[:1]
                 repo['latest_commits'] = commits
                 for commit in commits:
-                    commit['commit']['author']['date'] = datetime.strptime(commit['commit']['author']['date'], "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m-%d %H:%M:%S")
-        
-        return render_template("gitquery.html", gitquery=input_username, user=user_data, repos=repos)
+                    commit['commit']['author']['date'] =
+                    datetime.strptime(commit['commit']['author']['date'],
+                    "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m-%d %H:%M:%S")
+
+        return render_template("gitquery.html",
+            gitquery=input_username, user=user_data, repos=repos)
     else:
         return render_template("error.html")
