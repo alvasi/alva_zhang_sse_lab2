@@ -127,8 +127,8 @@ def minus(text):
 def find_largest_number(question):
     if "Which of the following numbers is the largest: " in question:
         numbers_str = question.split(": ")[1]
-        numbers = [int(num.strip("?").strip())/
-                  for num in numbers_str.split(",")]
+        numbers = numbers_str.split(",")
+        numbers = [int(num.strip("?").strip()) for num in numbers]
         return str(max(numbers))
     return None
 
