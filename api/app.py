@@ -196,7 +196,8 @@ def gitquery():
                         commit['commit']['author']['date']
                     )
 
-        return render_template("gitquery.html",
-                                gitquery=input_username, user=user_data, repos=repos)
+        return render_template(
+            "gitquery.html", gitquery=input_username,
+            user=user_data, repos=repos)
     else:
         return render_template("error.html")
