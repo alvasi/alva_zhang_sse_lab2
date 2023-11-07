@@ -6,17 +6,39 @@
 
 <body>
     <h2>User Profile</h2>
-<div class="user-profile">
-    <div class="user-info">
-        <p>Username: {{ user.login }}</p>
-        <p>Name: {{ user.name }}</p>
-        <p>Bio: {{ user.bio }}</p>
-        <p>Location: {{ user.location }}</p>
+    <div class="user-profile">
+        <div class="user-info">
+            <p>Username: {{ user.login }}</p>
+            <p>Name: {{ user.name }}</p>
+            <p>Bio: {{ user.bio }}</p>
+            <p>Location: {{ user.location }}</p>
+        </div>
+        <div class="avatar-container">
+            <img src="{{ user.avatar_url }}" alt="User Avatar" class="avatar">
+        </div>
     </div>
-    <div class="avatar-container">
-        <img src="{{ user.avatar_url }}" alt="User Avatar" class="avatar">
-    </div>
-</div>
+    <p><b>Followers</b>:  {{ followers|length }}</p>
+    <details>
+        <summary>Click to show followers</summary>
+        <ul>
+            {% for follower in followers %}
+            <li><a href="{{ follower.html_url }}">{{ follower.login }}</a></li>
+            {% endfor %}
+        </ul>
+    </details>
+    <p><b>Following</b>:  {{ following|length }}</p>
+    <details>
+        <summary>Click to show people {{ gitquery }} follows</summary>
+        <ul>
+            {% for person in following %}
+            <li><a href="{{ person.html_url }}">{{ person.login }}</a></li>
+            {% endfor %}
+        </ul>
+    </details>
+
+    <h3>Contribution Calendar</h3>
+    <img src="https://ghchart.rshah.org/{{ gitquery }}" alt="Github Contributions Chart">
+
     <h2>Here is the list of repositories for: {{ gitquery }}</h2>
     <table class="gap">
         <tr>
@@ -63,6 +85,18 @@
         .avatar {
         width: 200px;
         height: 200px;
+        }
+
+        details {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        }
+
+        summary {
+        cursor: pointer;
+        font-weight: bold;
         }
     </style>
 </body>
