@@ -127,7 +127,8 @@ def minus(text):
 def find_largest_number(question):
     if "Which of the following numbers is the largest: " in question:
         numbers_str = question.split(": ")[1]
-        numbers = [int(num.strip("?").strip()) for num in numbers_str.split(",")]
+        numbers = [int(num.strip("?").strip())/
+                  for num in numbers_str.split(",")]
         return str(max(numbers))
     return None
 
@@ -175,7 +176,9 @@ def datetimeformat(value, format="%Y-%m-%d %H:%M:%S"):
 @app.route("/gitquery", methods=["GET"])
 def gitquery():
     input_username = request.args.get("gitquery")
-    user_response = requests.get(f"https://api.github.com/users/{input_username}")
+    user_response = requests.get(
+        f"https://api.github.com/users/{input_username}"
+    )
     repos_response = requests.get(
         f"https://api.github.com/users/{input_username}/repos"
     )
@@ -204,9 +207,8 @@ def gitquery():
                 commits = commit_response.json()[:1]
                 repo["latest_commits"] = commits
                 for commit in commits:
-                    commit["commit"]["author"]["date"] = commit["commit"]["author"][
-                        "date"
-                    ]
+                    commit["commit"]["author"]["date"] =/
+                    commit["commit"]["author"]["date"]
 
         return render_template(
             "gitquery.html",
