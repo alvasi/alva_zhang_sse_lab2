@@ -3,8 +3,21 @@
 <head>
    <title>Hello GitUser</title>
 </head>
+
 <body>
-    <h1>Here is the list of repositories for: {{ gitquery }}</h1>
+    <h2>User Profile</h2>
+<div class="user-profile">
+    <div class="user-info">
+        <p>Username: {{ user.login }}</p>
+        <p>Name: {{ user.name }}</p>
+        <p>Bio: {{ user.bio }}</p>
+        <p>Location: {{ user.location }}</p>
+    </div>
+    <div class="avatar-container">
+        <img src="{{ user.avatar_url }}" alt="User Avatar" class="avatar">
+    </div>
+</div>
+    <h2>Here is the list of repositories for: {{ gitquery }}</h2>
     <table class="gap">
         <tr>
             <th>Repository</th>
@@ -31,6 +44,25 @@
     <style>
         .gap {
             border-spacing: 30px;
+        }
+        .user-profile {
+        display: flex;
+        align-items: center;
+        }
+
+        .user-info {
+        flex: 1;
+        margin-right: 20px;
+        }
+
+        .avatar-container {
+        padding-top: 10px;
+        margin-right: 100px;
+        }
+
+        .avatar {
+        width: 200px;
+        height: 200px;
         }
     </style>
 </body>
