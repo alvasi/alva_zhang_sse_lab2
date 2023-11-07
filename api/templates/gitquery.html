@@ -32,7 +32,7 @@
             <td>
                 {% for commit in repo.latest_commits %}
                 <p> Author: {{ commit.commit.author.name }}</p>
-                <p> Date: {{ commit.commit.author.date }}</p>
+                <p> Date: {{ commit.commit.author.date|datetimeformat }}</p>
                 <p> Message: {{ commit.commit.message }}</p>
                 {% endfor %}
             </td>
