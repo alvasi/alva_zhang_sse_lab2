@@ -203,9 +203,6 @@ def gitquery():
             commit_response = requests.get(
                 f"https://api.github.com/repos/{repo['full_name']}/commits"
             )
-            languages_response = requests.get(
-                f"https://api.github.com/repos/{repo['full_name']}/languages"
-            )
             if commit_response.status_code == 200:
                 commits = commit_response.json()[:1]
                 repo["latest_commits"] = commits
