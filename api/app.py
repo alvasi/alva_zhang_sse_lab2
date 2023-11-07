@@ -207,9 +207,9 @@ def gitquery():
                 commits = commit_response.json()[:1]
                 repo["latest_commits"] = commits
                 for commit in commits:
-                    commit["commit"]["author"]["date"] =/
+                    commit["commit"]["author"]["date"] = (
                     commit["commit"]["author"]["date"]
-
+                    )
         return render_template(
             "gitquery.html",
             gitquery=input_username,
