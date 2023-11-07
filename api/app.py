@@ -216,11 +216,11 @@ def gitquery():
             if languages_response.status_code == 200:
                 language_distribution = {}
                 for repo in repos:
-                    for language, bytes in repo['language_distribution'].items():
-                        if language in language_distribution:
-                            language_distribution[language] += bytes
-                        else:
-                            language_distribution[language] = bytes
+                    lang_dist_items = repo['language_distribution'].items()
+                    for language, bytes_ in lang_dist_items:
+                        if language not in language_distribution:
+                            language_distribution[language] = 0
+                        language_distribution[language] += bytes_
 
         return render_template(
             "gitquery.html",
