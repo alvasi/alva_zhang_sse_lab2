@@ -203,6 +203,9 @@ def gitquery():
             commit_response = requests.get(
                 f"https://api.github.com/repos/{repo['full_name']}/commits"
             )
+            languages_response = requests.get(
+                f"https://api.github.com/repos/{repo['full_name']}/languages"
+            )
             if commit_response.status_code == 200:
                 commits = commit_response.json()[:1]
                 repo["latest_commits"] = commits
@@ -210,6 +213,15 @@ def gitquery():
                     commit["commit"]["author"]["date"] = (
                         commit["commit"]["author"]["date"]
                     )
+            if languages_response.status_code == 200:
+                language_distribution = {}
+                for repo in repos:
+                    for language, bytes in repo['language_distribution'].items():
+                        if language in language_distribution:
+                            language_distribution[language] += bytes
+                        else:
+                            language_distribution[language] = bytes
+
         return render_template(
             "gitquery.html",
             gitquery=input_username,
@@ -217,6 +229,7 @@ def gitquery():
             repos=repos,
             followers=followers,
             following=following,
+            language_distribution=language_distribution,
         )
     else:
         return render_template("error.html")

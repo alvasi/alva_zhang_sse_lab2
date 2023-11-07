@@ -2,16 +2,17 @@
 <html>
 <head>
    <title>Hello GitUser</title>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <h2>User Profile</h2>
     <div class="user-profile">
         <div class="user-info">
-            <p>Username: {{ user.login }}</p>
-            <p>Name: {{ user.name }}</p>
-            <p>Bio: {{ user.bio }}</p>
-            <p>Location: {{ user.location }}</p>
+            <p><b>Username:</b> {{ user.login }}</p>
+            <p><b>Name:</b> {{ user.name }}</p>
+            <p><b>Bio:</b> {{ user.bio }}</p>
+            <p><b>Location:</b> {{ user.location }}</p>
         </div>
         <div class="avatar-container">
             <img src="{{ user.avatar_url }}" alt="User Avatar" class="avatar">
@@ -38,6 +39,9 @@
 
     <h3>Contribution Calendar</h3>
     <img src="https://ghchart.rshah.org/{{ gitquery }}" alt="Github Contributions Chart">
+
+    <h3>Language Distribution</h3>
+    <canvas id="languageChart"></canvas>
 
     <h2>Here is the list of repositories for: {{ gitquery }}</h2>
     <table class="gap">
@@ -99,5 +103,32 @@
         font-weight: bold;
         }
     </style>
+    <script>
+        var ctx = document.getElementById('languageChart').getContext('2d');
+        var labels = {{ language_distribution.keys()|tojson }};
+        var data = {{ language_distribution.values()|tojson }};
+        var backgroundColors = labels.map(function() { return getRandomColor(); });
+
+        var chartData = {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                hoverOffset: 4
+            }]
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: chartData,
+        });
+
+        function getRandomColor() {
+            var r = Math.floor(Math.random() * 256); // Random between 0-255
+            var g = Math.floor(Math.random() * 256); // Random between 0-255
+            var b = Math.floor(Math.random() * 256); // Random between 0-255
+            return 'rgb(' + r + ',' + g + ',' + b + ')'; 
+        }
+    </script>
 </body>
 </html>
