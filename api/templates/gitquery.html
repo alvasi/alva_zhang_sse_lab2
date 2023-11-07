@@ -15,7 +15,7 @@
         {% for repo in repos %}
         <tr>
             <td>{{ repo.full_name }}</td>
-            <td>{{ repo.updated_at }}</td>
+            <td>{{ repo.updated_at|datetimeformat }}</td>
             <td>
                 {% for commit in repo.latest_commits %}
                 <p> Author: {{ commit.commit.author.name }}</p>
