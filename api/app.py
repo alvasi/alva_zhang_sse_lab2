@@ -197,6 +197,6 @@ def gitquery():
                     )
 
         return render_template("gitquery.html",
-               gitquery=input_username, user=user_data, repos=repos)
+                gitquery=input_username, user=user_data, repos=repos)
     else:
         return render_template("error.html")
