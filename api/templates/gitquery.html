@@ -5,11 +5,12 @@
 </head>
 <body>
     <h1>Here is the list of repositories for: {{ gitquery }}</h1>
-    <table>
+    <table class="gap">
         <tr>
             <th>Repository</th>
             <th>Last Updated</th>
             <th>Latest Commits</th>
+            <th>Repository URL</th>
         </tr>
         {% for repo in repos %}
         <tr>
@@ -17,14 +18,20 @@
             <td>{{ repo.updated_at }}</td>
             <td>
                 {% for commit in repo.latest_commits %}
-                <p> Commit hash: {{ commit.commit.sha }} </p>
                 <p> Author: {{ commit.commit.author.name }}</p>
                 <p> Date: {{ commit.commit.author.date }}</p>
                 <p> Message: {{ commit.commit.message }}</p>
                 {% endfor %}
             </td>
+            <td><a href="{{  repo.html_url  }}">{{  repo.html_url  }}</a></td>
         </tr>
         {% endfor %}
     </table>
+
+    <style>
+        .gap {
+            border-spacing: 30px;
+        }
+    </style>
 </body>
 </html>
