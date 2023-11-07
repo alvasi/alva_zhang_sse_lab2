@@ -232,8 +232,12 @@ def gitquery():
             language_distribution=language_distribution,
         )
     else:
-        print(f"User response status: {user_response.status_code}, response: {user_response.text}")
-        print(f"Repos response status: {repos_response.status_code}, response: {repos_response.text}")
-        print(f"Followers response status: {followers_response.status_code}, response: {followers_response.text}")
-        print(f"Following response status: {following_response.status_code}, response: {following_response.text}")
+        print(f"User response status: {user_response.status_code},
+              response: {user_response.text}")
+        print(f"Repos response status: {repos_response.status_code},
+              response: {repos_response.text}")
+        print(f"Followers response status: {followers_response.status_code},
+              response: {followers_response.text}")
+        print(f"Following response status: {following_response.status_code},
+              response: {following_response.text}")
         return render_template("error.html")
