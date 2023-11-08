@@ -218,7 +218,7 @@ def gitquery():
                 language_distribution = language_response.json()
                 repo["language_distribution"] = (
                      ", ".join([f"{language}: {percentage}%" for language,
-                     percentage in language_distribution.items()])
+                          percentage in language_distribution.items()])
                 )
         return render_template(
             "gitquery.html",
