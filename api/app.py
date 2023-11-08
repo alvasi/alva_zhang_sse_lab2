@@ -214,7 +214,8 @@ def gitquery():
             total_code_size = sum(repo["languages"].values())
 
             for language, code_size in repo["languages"].items():
-                repo["languages"][language] = (code_size / total_code_size) * 100
+                repo["languages"][language] = (
+                     code_size / total_code_size) * 100
 
         return render_template(
             "gitquery.html",
