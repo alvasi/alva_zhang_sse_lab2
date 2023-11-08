@@ -211,6 +211,15 @@ def gitquery():
                         commit["commit"]["author"]["date"]
                     )
 
+            language_response = requests.get(
+                f"https://api.github.com/repos/{repo['full_name']}/languages"
+            )
+            if language_response.status_code == 200:
+                language_distribution = language_response.json()
+                repo["language_distribution"] =(
+                    ", ".join([f"{language}: {percentage}%" for language,
+                    percentage in language_distribution.items()])
+                )
         return render_template(
             "gitquery.html",
             gitquery=input_username,

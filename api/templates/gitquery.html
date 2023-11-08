@@ -5,10 +5,9 @@
 </head>
 
 <body>
-    <h2>User Profile</h2>
+    <h2>{{ user.login }}'s Profile</h2>
     <div class="user-profile">
         <div class="user-info">
-            <p><b>Username:</b> {{ user.login }}</p>
             <p><b>Name:</b> {{ user.name }}</p>
             <p><b>Bio:</b> {{ user.bio }}</p>
             <p><b>Location:</b> {{ user.location }}</p>
@@ -45,6 +44,7 @@
             <th>Repository</th>
             <th>Last Updated</th>
             <th>Latest Commits</th>
+            <th>Language Distribution</th>
             <th>Repository URL</th>
         </tr>
         {% for repo in repos %}
@@ -58,6 +58,7 @@
                 <p> Message: {{ commit.commit.message }}</p>
                 {% endfor %}
             </td>
+            <td>{{ repo.language_distribution }}</td>
             <td><a href="{{  repo.html_url  }}">{{  repo.html_url  }}</a></td>
         </tr>
         {% endfor %}
