@@ -211,11 +211,17 @@ def gitquery():
                         commit["commit"]["author"]["date"]
                     )
 
-            total_code_size = sum(repo["languages"].values())
+            languages_response = requests.get(
+                f"https://api.github.com/repos/{repo['full_name']}/languages"
+            )
+            if languages_response.status_code == 200:
+                languages = languages_response.json()
+                total_code_size = sum(languages.values())
 
-            for language, code_size in repo["languages"].items():
-                repo["languages"][language] = (
-                     code_size / total_code_size) * 100
+                for language, code_size in languages.items():
+                    languages[language] = (code_size / total_code_size) * 100
+
+                repo["languages"] = languages
 
         return render_template(
             "gitquery.html",
