@@ -58,7 +58,11 @@
                 <p> Message: {{ commit.commit.message }}</p>
                 {% endfor %}
             </td>
-            <td>{{ repo.language_distribution }}</td>
+            <td>
+                {% for language, usage in repo.languages.items() %}
+                <p>{{ language }}: {{ usage|round(2) }}%</p> <!-- Display the relative usage value -->
+                {% endfor %}
+            </td>
             <td><a href="{{  repo.html_url  }}">{{  repo.html_url  }}</a></td>
         </tr>
         {% endfor %}
